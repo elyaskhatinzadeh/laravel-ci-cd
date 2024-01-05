@@ -1,5 +1,5 @@
 # Use an official PHP runtime as a parent image
-FROM php:8.1-apache
+FROM php:7.4-apache
 
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set the environment variable to allow Composer to run as superuser
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Clone your Laravel application
 # RUN git clone https://github.com/yourusername/yourlaravelapp.git .
