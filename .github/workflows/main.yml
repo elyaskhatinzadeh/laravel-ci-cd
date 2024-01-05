@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            test -d $PROJECT_NAME || git clone https://github.com/${{github.repository}}.git
-            cd $PROJECT_NAME
+            test -d ${{$PROJECT_NAME}} || git clone https://github.com/${{github.repository}}.git
+            cd ${{$PROJECT_NAME}}
             git pull
 
 
