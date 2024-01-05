@@ -21,6 +21,7 @@ jobs:
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
             echo ${{ github.repository_name }} && echo ${{github.repository_url}}
+            echo ${{ github.repository }}
             test -d ${{ github.repository_name }} || git clone ${{github.repository_url}}
             cd ${{github.repository_url}}
             git pull
