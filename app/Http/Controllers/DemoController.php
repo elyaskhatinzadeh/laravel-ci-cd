@@ -12,7 +12,8 @@ class DemoController extends Controller
         User::factory(1)->create();
         $users = User::all();
         return response()->json([
-            'users' => $users
+            'success'   => true,
+            'users'     => $users
         ]);
     }
 }
