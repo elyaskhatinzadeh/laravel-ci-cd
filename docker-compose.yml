@@ -21,6 +21,7 @@ services:
             - db
         networks:
             - app-network
+        entrypoint: ["/usr/local/bin/entrypoint.sh"]  # Specify the entrypoint script
 
     db:
         image: mysql:5.7
