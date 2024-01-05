@@ -22,7 +22,7 @@ services:
         networks:
             - app-network
         volumes:
-            - laravel_data:/var/www/html/storage  # Mount a volume for Laravel app data
+            - laravel_storage:/var/www/html/storage
 
     db:
         image: mysql:5.7
@@ -58,5 +58,5 @@ networks:
         driver: bridge
 
 volumes:
-    laravel_data:
+    laravel_storage:
     mysql_data:
