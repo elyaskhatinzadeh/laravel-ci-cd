@@ -2,7 +2,7 @@
 FROM php:8.2-apache
 
 # Set the working directory to /var/www/html
-WORKDIR /var/www/html/public
+WORKDIR /var/www/html
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -33,11 +33,18 @@ RUN composer dump-autoload --optimize
 COPY .env.example .env
 
 # Set the correct permissions
-RUN chown -R www-data:www-data storage bootstrap/cache
-RUN chmod -R 755 storage
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html/storage
+RUN chmod -R 755 /var/www/html/bootstrap/cache
 
 # Generate the application key
 RUN php artisan key:generate
+
+# Copy Apache configuration
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable Apache modules
+RUN a2enmod rewrite
 
 # Expose port 80
 EXPOSE 80
