@@ -17,9 +17,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Set the environment variable to allow Composer to run as superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-# Clone your Laravel application
-# RUN git clone https://github.com/yourusername/yourlaravelapp.git .
-
 # Copy the composer.json and composer.lock
 COPY composer.json composer.lock ./
 
@@ -32,8 +29,14 @@ COPY . .
 # Generate optimized autoload files
 RUN composer dump-autoload --optimize
 
+# Set up environment variables
+COPY .env.example .env
+
 # Set the correct permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
+
+# Generate the application key
+RUN php artisan key:generate
 
 # Expose port 80
 EXPOSE 80
