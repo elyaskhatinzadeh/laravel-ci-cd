@@ -21,7 +21,7 @@ services:
             - db
         networks:
             - app-network
-        entrypoint: ["/var/www/html/entrypoint.sh"]
+        entrypoint: ./entrypoint.sh
         volumes:
             - laravel_storage:/var/www/html/storage
 

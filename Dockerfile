@@ -37,6 +37,11 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 755 storage
 RUN chmod -R 755 bootstrap/cache
 
+# Copy entripoint
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Generate the application key
 RUN php artisan key:generate
 
