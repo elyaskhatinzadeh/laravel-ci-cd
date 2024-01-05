@@ -9,8 +9,8 @@ on:
 jobs:
   push-store-image:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: laravel-ci-cd
+
+
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            test -d ${{$PROJECT_NAME}} || git clone https://github.com/${{github.repository}}.git
-            cd ${{$PROJECT_NAME}}
+            test -d laravel-ci-cd || git clone https://github.com/${{github.repository}}.git
+            cd laravel-ci-cd
             git pull
 
 
