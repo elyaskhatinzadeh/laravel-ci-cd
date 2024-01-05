@@ -37,7 +37,8 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Generate the application key
 RUN php artisan key:generate
-RUN php artisan migrate --seed
+RUN php artisan migrate
+RUN php artisan db:seed
 
 # Expose port 80
 EXPOSE 80
