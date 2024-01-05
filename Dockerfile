@@ -33,7 +33,7 @@ RUN composer dump-autoload --optimize
 COPY .env.example .env
 
 # Set the correct permissions
-RUN chown -R www-data:www-data
+RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 755 storage
 RUN chmod -R 755 bootstrap/cache
 
