@@ -9,7 +9,7 @@ services:
         container_name: yourlaravelapp
         restart: unless-stopped
         ports:
-            - "8000:80"
+            - "8001:80"
         environment:
             - APACHE_RUN_USER=#1000
         depends_on:
