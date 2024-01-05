@@ -34,8 +34,7 @@ COPY .env.example .env
 
 # Set the correct permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
-RUN chown -R www-data: /var/www/app
-RUN chmod -R 755 /var/www/app/storage
+RUN chmod -R 755 storage
 
 # Generate the application key
 RUN php artisan key:generate
