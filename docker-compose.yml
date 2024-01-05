@@ -20,13 +20,13 @@ services:
 #        depends_on:
 #            - db
         networks:
-            - databse-network
+            - database-network
         entrypoint: /usr/local/bin/entrypoint.sh
         volumes:
             - laravel_storage:/var/www/html/storage
 
 networks:
-    databse-network:
+    database-network:
         external: true
 
 volumes:
