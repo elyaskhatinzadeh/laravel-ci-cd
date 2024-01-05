@@ -33,9 +33,9 @@ RUN composer dump-autoload --optimize
 COPY .env.example .env
 
 # Set the correct permissions
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html/storage
-RUN chmod -R 755 /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data
+RUN chmod -R 755 storage
+RUN chmod -R 755 bootstrap/cache
 
 # Generate the application key
 RUN php artisan key:generate

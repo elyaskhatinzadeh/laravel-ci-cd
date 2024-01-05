@@ -9,6 +9,7 @@ class DemoController extends Controller
 {
     public function index()
     {
+        User::factory(1)->create();
         $users = User::all();
         return response()->json($users);
     }
