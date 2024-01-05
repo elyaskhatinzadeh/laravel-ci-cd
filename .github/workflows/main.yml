@@ -13,13 +13,6 @@ jobs:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
 
-      - name: 'Login to GitHub Container Registry'
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-
       - name: Clone and Pull
         uses: appleboy/ssh-action@master
         with:
@@ -27,9 +20,9 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            echo ${{ github.repository_name }} && echo ${{ github.repository_url }}
-            test -d ${{ github.repository_name }} || git clone ${{ github.repository_url }}
-            cd ${{ github.repository_url }}
+            echo ${{ github.repository_name }} && echo ${{github.repository_url}}
+            test -d ${{ github.repository_name }} || git clone ${{github.repository_url}}
+            cd ${{github.repository_url}}
             git pull
 
 
@@ -40,6 +33,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            cd ${{ github.repository_name }}
+            cd ${{github.repository_name}}
             docker compose build
             docker compose up -d
