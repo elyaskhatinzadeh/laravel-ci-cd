@@ -34,6 +34,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            cd ${{github.repository_name}}
+            cd laravel-ci-cd
             docker compose build
             docker compose up -d
