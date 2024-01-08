@@ -1,37 +1,33 @@
 version: '3'
 
 services:
-    # Laravel app service
-    app:
-        image: php:alpine
-        container_name: laravel-app
-        working_dir: /var/www/html
-        volumes:
-            - ./laravel-app:/var/www/html
-        command: php -S 0.0.0.0:80 -t public
-        ports:
-            - "8008:80"
-        depends_on:
-            - mysql
-        networks:
-            - laravel-net
+  # PHP-Alpine service
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-container
+    ports:
+      - "8080:80"
+    networks:
+      - app-net
 
-    # MySQL service
-    mysql:
-        image: mysql:5.7
-        container_name: mysql-container
-        environment:
-            MYSQL_DATABASE: laravel_db
-            MYSQL_USER: laravel_user
-            MYSQL_PASSWORD: laravel_password
-            MYSQL_ROOT_PASSWORD: root_password
-        volumes:
-            - ./mysql-data:/var/lib/mysql
-        ports:
-            - "3307:3306"
-        networks:
-            - laravel-net
+  # MySQL service
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-container
+    environment:
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-net
 
 networks:
-    laravel-net:
-        driver: bridge
+  app-net:
+    driver: bridge
