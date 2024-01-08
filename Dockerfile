@@ -5,7 +5,7 @@ FROM php:8.2-alpine
 WORKDIR /var/www/html
 
 # Copy the local PHP application to the container
-COPY ./php-app /var/www/html
+COPY ./ /var/www/html/
 
 # Expose port 80 for the built-in PHP server
 EXPOSE 80
