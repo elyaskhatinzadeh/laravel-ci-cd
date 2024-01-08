@@ -10,7 +10,7 @@ services:
             - ./laravel-app:/var/www/html
         command: php -S 0.0.0.0:80 -t public
         ports:
-            - "8080:80"
+            - "8008:80"
         depends_on:
             - mysql
         networks:
@@ -28,7 +28,7 @@ services:
         volumes:
             - ./mysql-data:/var/lib/mysql
         ports:
-            - "3306:3306"
+            - "3307:3306"
         networks:
             - laravel-net
 
