@@ -3,7 +3,7 @@ version: '3'
 services:
     # Laravel app service
     app:
-        image: php:8.2-alpine
+        image: php:alpine
         container_name: laravel-app
         working_dir: /var/www/html
         volumes:
@@ -18,7 +18,7 @@ services:
 
     # MySQL service
     mysql:
-        image: mysql:latest
+        image: mysql:5.7
         container_name: mysql-container
         environment:
             MYSQL_DATABASE: laravel_db
