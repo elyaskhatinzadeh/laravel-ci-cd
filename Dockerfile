@@ -4,15 +4,20 @@ FROM php:8.2-alpine
 # Set the working directory in the container
 WORKDIR /var/www/html
 
-# Install dependencies using apk
+# Install dependencies
 RUN apk --update --no-cache add \
     libzip-dev \
     icu-dev \
     unzip \
-    git
+    git \
+    autoconf \
+    g++ \
+    make \
+    pcre-dev \
+    && docker-php-ext-install pdo_mysql zip intl \
+    && apk del autoconf g++ make pcre-dev \
+    && rm -rf /var/cache/apk/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql zip intl
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
