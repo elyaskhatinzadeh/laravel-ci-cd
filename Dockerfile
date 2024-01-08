@@ -9,7 +9,8 @@ RUN apk --no-cache add \
     libzip-dev \
     icu-dev \
     unzip \
-    git
+    git \
+    apache2
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql zip intl
